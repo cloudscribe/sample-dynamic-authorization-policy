@@ -8,49 +8,67 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             //https://docs.asp.net/en/latest/security/authorization/policies.html
 
-            options.AddCloudscribeCoreDefaultPolicies();
-            options.AddCloudscribeLoggingDefaultPolicy();
+            // *** comment out default policies which are hard coded in these extension methods
+            // *** any policies defined here will not be managed by the UI
 
-            options.AddCloudscribeCoreSimpleContentIntegrationDefaultPolicies();
-            // this is what the above extension adds
-            //options.AddPolicy(
-            //    "BlogEditPolicy",
-            //    authBuilder =>
-            //    {
-            //        //authBuilder.RequireClaim("blogId");
-            //        authBuilder.RequireRole("Administrators");
-            //    }
-            // );
+            //options.AddCloudscribeCoreDefaultPolicies();
+            //options.AddCloudscribeLoggingDefaultPolicy();
+
+            //options.AddCloudscribeCoreSimpleContentIntegrationDefaultPolicies();
 
             //options.AddPolicy(
-            //    "PageEditPolicy",
+            //    "FileManagerPolicy",
             //    authBuilder =>
             //    {
-            //        authBuilder.RequireRole("Administrators");
+            //        authBuilder.RequireRole("Administrators", "Content Administrators");
             //    });
 
+            //options.AddPolicy(
+            //    "FileManagerDeletePolicy",
+            //    authBuilder =>
+            //    {
+            //        authBuilder.RequireRole("Administrators", "Content Administrators");
+            //    });
+
+            //    options.AddPolicy(
+            //        "IdentityServerAdminPolicy",
+            //        authBuilder =>
+            //        {
+            //            authBuilder.RequireRole("Administrators");
+            //        });
+
+            // policies that are hard coded here will not be managed from the UI and for some policies that is what you want
+
+            //*** best to declare this policy here and not let it be managed from the UI since it
+            //    enforces only the root site admins can manage, therefore the policy should never be managed per tenant
             options.AddPolicy(
-                "FileManagerPolicy",
+                "ServerAdminPolicy",
                 authBuilder =>
                 {
-                    authBuilder.RequireRole("Administrators", "Content Administrators");
+                    authBuilder.RequireRole("ServerAdmins");
+
                 });
 
+            // you could comment this out if you want admins from any site to be able
+            // to edit globablly shared country state data
+            // by commenting this out the policy could be managed per tenant from the UI
             options.AddPolicy(
-                "FileManagerDeletePolicy",
+                "CoreDataPolicy",
                 authBuilder =>
                 {
-                    authBuilder.RequireRole("Administrators", "Content Administrators");
+                    authBuilder.RequireRole("ServerAdmins");
                 });
 
-                options.AddPolicy(
-                    "IdentityServerAdminPolicy",
-                    authBuilder =>
-                    {
-                        authBuilder.RequireRole("Administrators");
-                    });
+            // probably best and recommended to not let this policy be managed from the UI
+            // since this policy controls who can manage policies from the UI
+            options.AddPolicy(
+                "PolicyManagementPolicy",
+                authBuilder =>
+                {
+                    authBuilder.RequireRole("Administrators");
+                });
 
-            // add other policies here 
+
 
 
             return options;

@@ -11,8 +11,9 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddCloudscribeCoreNoDbStorage();
             services.AddCloudscribeLoggingNoDbStorage(config);
-            
             services.AddNoDbStorageForSimpleContent();
+
+            services.AddNoDbStorageForDynamicPolicies(config);
 
             return services;
         }
@@ -33,6 +34,9 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSimpleContentMvc(config);
             services.AddMetaWeblogForSimpleContent(config.GetSection("MetaWeblogApiOptions"));
             services.AddSimpleContentRssSyndiction();
+
+            services.AddCloudscribeDynamicPolicyIntegration(config);
+            services.AddDynamicAuthorizationMvc(config);
 
             return services;
         }
