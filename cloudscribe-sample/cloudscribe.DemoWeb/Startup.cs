@@ -102,6 +102,7 @@ namespace cloudscribe.DemoWeb
 
             app.UseForwardedHeaders();
             app.UseStaticFiles();
+            app.UseCloudscribeCommonStaticFiles();
 
             app.UseRequestLocalization(localizationOptionsAccessor.Value);
             app.UseCors("default"); //use Cors with policy named default, defined above
