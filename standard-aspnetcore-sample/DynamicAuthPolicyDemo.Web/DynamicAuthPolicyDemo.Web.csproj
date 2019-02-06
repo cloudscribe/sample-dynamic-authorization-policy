@@ -13,9 +13,9 @@
 
   <ItemGroup>
 
-    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Mvc" Version="2.1.3" />
-    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Views.Bootstrap3" Version="2.1.3" />
-    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.NoDb" Version="2.1.3" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Mvc" Version="2.1.6" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Views.Bootstrap3" Version="2.1.7" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.NoDb" Version="2.1.5" />
     
     <PackageReference Include="Microsoft.AspNetCore.App" />
     
