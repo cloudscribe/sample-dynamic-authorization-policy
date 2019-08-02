@@ -2,4 +2,6 @@
 
 See documentation: https://www.cloudscribe.com/dynamic-authorization-policies
 
+If you have questions please visit our community forums https://www.cloudscribe.com/forum
+
 These libraries can work with any ASP.NET Core MVC 2.1 application, but there is an integration library that makes them work even better with sites built on cloudscribe Core, allowing the browsing and selection of cloudscribe Core roles to be used with the authorization ploicies.
